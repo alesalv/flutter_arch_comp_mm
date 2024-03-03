@@ -7,7 +7,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -15,19 +15,28 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  cached_network_image: ^3.2.1
-  flutter_riverpod: ^2.0.0-dev.9
-  flutter_svg: ^1.1.4
-  http: ^0.13.5
-  json_annotation: ^4.6.0
-  shared_preferences: ^2.0.15
+  # https://pub.dev/packages/cached_network_image
+  cached_network_image: ^3.3.1
+  # https://pub.dev/packages/flutter_riverpod
+  flutter_riverpod: ^2.4.10
+  # https://pub.dev/packages/flutter_svg
+  flutter_svg: ^2.0.10+1
+  # https://pub.dev/packages/http
+  http: ^1.2.1
+  # https://pub.dev/packages/json_annotation
+  json_annotation: ^4.8.1
+  # https://pub.dev/packages/shared_preferences
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.2.0
-  flutter_lints: ^2.0.1
-  json_serializable: ^6.3.1
+  # https://pub.dev/packages/build_runner
+  build_runner: ^2.4.8
+  # https://pub.dev/packages/flutter_lints
+  flutter_lints: ^3.0.1
+  # https://pub.dev/packages/json_serializable
+  json_serializable: ^6.7.1
 
 flutter:
   uses-material-design: true

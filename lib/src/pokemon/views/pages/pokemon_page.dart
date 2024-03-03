@@ -11,7 +11,7 @@ import '../widgets/pokemon_card.dart';
 /// PokemonPage represents a page to displays a list of pokemon, showing a
 /// loading indicator for fetching operations and an error indicator for errors
 class PokemonPage extends ConsumerStatefulWidget {
-  const PokemonPage({Key? key}) : super(key: key);
+  const PokemonPage({super.key});
 
   static const routeName = 'pokemon_page';
 
@@ -31,14 +31,14 @@ class _PokemonPageState extends ConsumerState<PokemonPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pokemon'),
-        actions: <Widget>[ActionsMenuButton(read: ref.read)],
+        actions: const <Widget>[ActionsMenuButton()],
       ),
       body: Stack(children: [
         _PokemonList(),
         _LoadingIndicator(),
         _ErrorIndicator(),
       ]),
-      floatingActionButton: ActionsFabsRow(read: ref.read),
+      floatingActionButton: const ActionsFabsRow(),
     );
   }
 
