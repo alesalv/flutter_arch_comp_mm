@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:minimal/minimal.dart';
 
 /// A service that stores and retrieves user settings.
 ///
@@ -17,5 +17,7 @@ class SettingsService {
   }
 }
 
-/// settingsServiceProvider provides the settings service
-final settingsServiceProvider = Provider((_) => SettingsService());
+/// settingsServiceManager provides the settings service
+final settingsServiceManager = MMLocator(
+  () => SettingsService(),
+);
