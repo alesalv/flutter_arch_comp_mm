@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../controllers/pokemon_controller.dart';
+import '../../notifiers/pokemon_controller.dart';
 import '../../models/data/pokemon.dart';
 
 class ActionsFabsRow extends ConsumerWidget {

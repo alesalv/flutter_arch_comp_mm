@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../pokemon/controllers/pokemon_controller.dart';
+import '../../../pokemon/notifiers/pokemon_controller.dart';
 import '../../notifiers/settings_notifier.dart';
 
 /// Displays the various settings that can be customized by the user.

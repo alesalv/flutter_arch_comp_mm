@@ -4,7 +4,7 @@ import 'package:flutter_arch_comp/src/pokemon/views/widgets/actions_menu_button.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../controllers/pokemon_controller.dart';
+import '../../notifiers/pokemon_controller.dart';
 import '../widgets/loading_indicator.dart';
 import '../widgets/pokemon_card.dart';
 

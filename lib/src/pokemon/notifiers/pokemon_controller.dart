@@ -9,9 +9,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/models/repositories/repository.dart';
 import '../../core/utils/demo_hacks_helper.dart';
 
-/// PokemonController represents the controller of the pokemon page
-class PokemonController extends ChangeNotifier {
-  PokemonController(this.pokemonRepository) {
+/// PokemonNotifier represents the notifier of the pokemon page
+class PokemonNotifier extends ChangeNotifier {
+  PokemonNotifier(this.pokemonRepository) {
     _pokemonSubscription = pokemonRepository.watchAll().listen((pokemon) async {
       _onData(pokemon);
     });
@@ -132,5 +132,5 @@ class PokemonController extends ChangeNotifier {
 /// pokemonControllerProvider provides the pokemon controller
 final pokemonControllerProvider = ChangeNotifierProvider((ref) {
   final pokemonRepository = pokemonRepositoryLocator.instance;
-  return PokemonController(pokemonRepository);
+  return PokemonNotifier(pokemonRepository);
 });
