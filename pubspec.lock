@@ -450,6 +450,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  minimal:
+    dependency: "direct main"
+    description:
+      path: "../minimal"
+      relative: true
+    source: path
+    version: "0.0.1"
   octo_image:
     dependency: transitive
     description:

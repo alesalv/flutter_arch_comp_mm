@@ -25,6 +25,8 @@ dependencies:
   http: ^1.2.2
   # https://pub.dev/packages/json_annotation
   json_annotation: ^4.9.0
+  minimal:
+    path: ../minimal
   # https://pub.dev/packages/shared_preferences
   shared_preferences: ^2.3.5
 
