@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_arch_comp/src/core/models/repositories/repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:minimal/minimal.dart';
 
 import '../../../core/models/data_sources/data_source.dart';
 import '../../../core/utils/demo_hacks_helper.dart';
@@ -169,8 +169,8 @@ class PokemonRepository implements Repository<Pokemon> {
   }
 }
 
-/// pokemonRepositoryProvider provides the pokemon repository (singleton)
-final pokemonRepositoryProvider = Provider<Repository<Pokemon>>((ref) {
+/// pokemonRepositoryLocator provides the pokemon repository (singleton)
+final pokemonRepositoryLocator = MMLocator<Repository<Pokemon>>(() {
   return PokemonRepository(PokemonLocalDataSource(), PokemonRemoteDataSource(),
       Connectivity.instance);
 });

@@ -19,18 +19,18 @@ class ActionsMenuButton extends ConsumerWidget {
               final next =
                   await DemoHacksHelper.instance.nextPokemonFromRemote();
               if (next != null) {
-                ref.read(pokemonRepositoryProvider).create(next);
+                pokemonRepositoryLocator.instance.create(next);
               }
               break;
             case _MenuActions.delete:
               final first =
                   await DemoHacksHelper.instance.firstPokemonFromLocal();
               if (first != null) {
-                ref.read(pokemonRepositoryProvider).delete(first.id);
+                pokemonRepositoryLocator.instance.delete(first.id);
               }
               break;
             case _MenuActions.refresh:
-              ref.read(pokemonRepositoryProvider).refresh();
+              pokemonRepositoryLocator.instance.refresh();
               break;
           }
         },

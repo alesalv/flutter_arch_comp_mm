@@ -92,6 +92,6 @@ class PokemonDetailsController extends ChangeNotifier {
 /// pokemonControllerProvider provides the pokemon controller
 final pokemonDetailsControllerProvider =
     ChangeNotifierProvider.family<PokemonDetailsController, String>((ref, id) {
-  final pokemonRepository = ref.read(pokemonRepositoryProvider);
+  final pokemonRepository = pokemonRepositoryLocator.instance;
   return PokemonDetailsController(pokemonRepository, id);
 });
