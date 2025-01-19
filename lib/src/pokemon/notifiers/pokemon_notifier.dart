@@ -1,17 +1,16 @@
 import 'dart:async';
 
-import 'package:flutter/widgets.dart';
 import 'package:flutter_arch_comp/src/pokemon/models/data/pokemon.dart';
 import 'package:flutter_arch_comp/src/pokemon/models/repositories/pokemon_repository.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/ui_states/pokemon_ui_state.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:minimal/minimal.dart';
 
 import '../../core/models/repositories/repository.dart';
 import '../../core/utils/demo_hacks_helper.dart';
 
 /// PokemonNotifier represents the notifier of the pokemon page
-class PokemonNotifier extends ChangeNotifier {
-  PokemonNotifier(this.pokemonRepository) {
+class PokemonNotifier extends MMNotifier<PokemonUiState> {
+  PokemonNotifier(this.pokemonRepository) : super(PokemonUiState()) {
     _pokemonSubscription = pokemonRepository.watchAll().listen((pokemon) async {
       _onData(pokemon);
     });
@@ -19,8 +18,6 @@ class PokemonNotifier extends ChangeNotifier {
 
   final Repository<Pokemon> pokemonRepository;
   late final StreamSubscription _pokemonSubscription;
-  PokemonUiState _state = PokemonUiState();
-  PokemonUiState get state => _state;
 
   Future<void> create(Pokemon pokemon) async {
     /// demo only, the param 'pokemon' passed to create() is not really used;
@@ -89,48 +86,43 @@ class PokemonNotifier extends ChangeNotifier {
   }
 
   void consumeError() {
-    _state = _state.copy(errorMsg: '');
-    notifyListeners();
+    notify(state.copyWith(errorMsg: ''));
   }
 
   /// demo only
   void resetLocal() {
     DemoHacksHelper.instance.resetLocal();
-    _state = _state.copy(pokemon: []);
-    notifyListeners();
+    notify(state.copyWith(pokemon: []));
   }
 
   void _onLoading() {
-    _state = _state.copy(
+    notify(state.copyWith(
       pokemon: null,
       isFetchingPokemon: true,
       errorMsg: '',
-    );
-    notifyListeners();
+    ));
   }
 
   void _onData(List<Pokemon> data) {
-    _state = _state.copy(
+    notify(state.copyWith(
       pokemon: data.map((p) => PokemonItemUiState.fromPokemon(p)).toList(),
       isFetchingPokemon: false,
       errorMsg: '',
-    );
-    notifyListeners();
+    ));
   }
 
   void _onError(String msg) {
     // unsuccessful case, keep previous data
-    _state = _state.copy(
+    notify(state.copyWith(
       pokemon: null,
       isFetchingPokemon: false,
       errorMsg: msg,
-    );
-    notifyListeners();
+    ));
   }
 }
 
 /// pokemonControllerProvider provides the pokemon controller
-final pokemonControllerProvider = ChangeNotifierProvider((ref) {
+final pokemonNotifierManager = MMManager<PokemonNotifier>(() {
   final pokemonRepository = pokemonRepositoryLocator.instance;
   return PokemonNotifier(pokemonRepository);
 });

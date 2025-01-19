@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../notifiers/pokemon_controller.dart';
+import '../../notifiers/pokemon_notifier.dart';
 import '../../models/data/pokemon.dart';
 
 class ActionsFabsRow extends ConsumerWidget {
@@ -16,18 +16,18 @@ class ActionsFabsRow extends ConsumerWidget {
             heroTag: "buttonCreate",
             child: const Icon(Icons.add),
             onPressed: () =>
-                ref.read(pokemonControllerProvider).create(const Pokemon())),
+                pokemonNotifierManager.notifier.create(const Pokemon())),
         const SizedBox(width: 16),
         FloatingActionButton(
             heroTag: "buttonDelete",
             child: const Icon(Icons.remove),
             onPressed: () =>
-                ref.read(pokemonControllerProvider).delete(const Pokemon().id)),
+                pokemonNotifierManager.notifier.delete(const Pokemon().id)),
         const SizedBox(width: 16),
         FloatingActionButton(
             heroTag: "buttonRefresh",
             child: const Icon(Icons.refresh),
-            onPressed: () => ref.read(pokemonControllerProvider).refresh()),
+            onPressed: () => pokemonNotifierManager.notifier.refresh()),
       ],
     );
   }

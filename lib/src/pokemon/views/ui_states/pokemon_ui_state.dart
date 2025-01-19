@@ -1,10 +1,14 @@
+import 'package:dart_mappable/dart_mappable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:minimal/minimal.dart';
 
 import '../../models/data/pokemon.dart';
 
+part 'pokemon_ui_state.mapper.dart';
+
 /// PokemonUiState represents the UI state for the pokemon page
-@immutable
-class PokemonUiState {
+@MappableClass()
+class PokemonUiState extends MMState with PokemonUiStateMappable {
   PokemonUiState({
     pokemon,
     this.isFetchingPokemon = false,
@@ -13,31 +17,6 @@ class PokemonUiState {
   final List<PokemonItemUiState> pokemon;
   final bool isFetchingPokemon;
   final String errorMsg;
-
-  PokemonUiState copy({
-    List<PokemonItemUiState>? pokemon,
-    bool? isFetchingPokemon,
-    String? errorMsg,
-  }) {
-    return PokemonUiState(
-      pokemon: pokemon ?? this.pokemon,
-      isFetchingPokemon: isFetchingPokemon ?? this.isFetchingPokemon,
-      errorMsg: errorMsg ?? this.errorMsg,
-    );
-  }
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PokemonUiState &&
-          runtimeType == other.runtimeType &&
-          pokemon == other.pokemon &&
-          isFetchingPokemon == other.isFetchingPokemon &&
-          errorMsg == other.errorMsg;
-
-  @override
-  int get hashCode =>
-      pokemon.hashCode ^ isFetchingPokemon.hashCode ^ errorMsg.hashCode;
 }
 
 /// PokemonItemUiState represents the UI state for an item of the pokemon page

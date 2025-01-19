@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../pokemon/notifiers/pokemon_controller.dart';
+import '../../../pokemon/notifiers/pokemon_notifier.dart';
 import '../../notifiers/settings_notifier.dart';
 
 /// Displays the various settings that can be customized by the user.
@@ -58,6 +58,6 @@ class SettingsPage extends ConsumerWidget {
   }
 
   void _resetLocal(WidgetRef ref) {
-    ref.read(pokemonControllerProvider.notifier).resetLocal();
+    pokemonNotifierManager.notifier.resetLocal();
   }
 }
