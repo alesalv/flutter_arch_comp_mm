@@ -43,7 +43,7 @@ class PokemonDetailsController extends ChangeNotifier {
   }
 
   void consumeError() {
-    _state = _state.copy(errorMsg: '');
+    _state = _state.copyWith(errorMsg: '');
     notifyListeners();
   }
 
@@ -59,7 +59,7 @@ class PokemonDetailsController extends ChangeNotifier {
 
   void _onLoading() {
     // loading case
-    _state = _state.copy(
+    _state = _state.copyWith(
       pokemon: null,
       isFetchingPokemon: true,
       errorMsg: '',
@@ -68,7 +68,7 @@ class PokemonDetailsController extends ChangeNotifier {
   }
 
   void _onData(Pokemon? data) {
-    _state = _state.copy(
+    _state = _state.copyWith(
       pokemon: data == null
           ? const PokemonDetailsItemUiState()
           : PokemonDetailsItemUiState.fromPokemon(data),
@@ -80,7 +80,7 @@ class PokemonDetailsController extends ChangeNotifier {
 
   void _onError(String msg) {
     // unsuccessful case
-    _state = _state.copy(
+    _state = _state.copyWith(
       pokemon: null,
       isFetchingPokemon: false,
       errorMsg: msg,
