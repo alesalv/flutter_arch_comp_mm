@@ -1,5 +1,4 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:minimal/minimal.dart';
 
 import '../../models/data/pokemon.dart';
@@ -20,8 +19,8 @@ class PokemonUiState extends MMState with PokemonUiStateMappable {
 }
 
 /// PokemonItemUiState represents the UI state for an item of the pokemon page
-@immutable
-class PokemonItemUiState {
+@MappableClass()
+class PokemonItemUiState with PokemonItemUiStateMappable {
   const PokemonItemUiState({
     this.id = '',
     this.name = '',
@@ -40,18 +39,4 @@ class PokemonItemUiState {
         image: pokemon.image,
         order: pokemon.order.toString(),
       );
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PokemonItemUiState &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          order == other.order &&
-          image == other.image;
-
-  @override
-  int get hashCode =>
-      id.hashCode ^ name.hashCode ^ order.hashCode ^ image.hashCode;
 }

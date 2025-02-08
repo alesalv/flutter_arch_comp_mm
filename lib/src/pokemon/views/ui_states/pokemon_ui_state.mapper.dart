@@ -133,3 +133,135 @@ class _PokemonUiStateCopyWithImpl<$R, $Out>
           Then<$Out2, $R2> t) =>
       _PokemonUiStateCopyWithImpl($value, $cast, t);
 }
+
+class PokemonItemUiStateMapper extends ClassMapperBase<PokemonItemUiState> {
+  PokemonItemUiStateMapper._();
+
+  static PokemonItemUiStateMapper? _instance;
+  static PokemonItemUiStateMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = PokemonItemUiStateMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'PokemonItemUiState';
+
+  static String _$id(PokemonItemUiState v) => v.id;
+  static const Field<PokemonItemUiState, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
+  static String _$name(PokemonItemUiState v) => v.name;
+  static const Field<PokemonItemUiState, String> _f$name =
+      Field('name', _$name, opt: true, def: '');
+  static String _$image(PokemonItemUiState v) => v.image;
+  static const Field<PokemonItemUiState, String> _f$image =
+      Field('image', _$image, opt: true, def: '');
+  static String _$order(PokemonItemUiState v) => v.order;
+  static const Field<PokemonItemUiState, String> _f$order =
+      Field('order', _$order, opt: true, def: '');
+
+  @override
+  final MappableFields<PokemonItemUiState> fields = const {
+    #id: _f$id,
+    #name: _f$name,
+    #image: _f$image,
+    #order: _f$order,
+  };
+
+  static PokemonItemUiState _instantiate(DecodingData data) {
+    return PokemonItemUiState(
+        id: data.dec(_f$id),
+        name: data.dec(_f$name),
+        image: data.dec(_f$image),
+        order: data.dec(_f$order));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static PokemonItemUiState fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<PokemonItemUiState>(map);
+  }
+
+  static PokemonItemUiState fromJson(String json) {
+    return ensureInitialized().decodeJson<PokemonItemUiState>(json);
+  }
+}
+
+mixin PokemonItemUiStateMappable {
+  String toJson() {
+    return PokemonItemUiStateMapper.ensureInitialized()
+        .encodeJson<PokemonItemUiState>(this as PokemonItemUiState);
+  }
+
+  Map<String, dynamic> toMap() {
+    return PokemonItemUiStateMapper.ensureInitialized()
+        .encodeMap<PokemonItemUiState>(this as PokemonItemUiState);
+  }
+
+  PokemonItemUiStateCopyWith<PokemonItemUiState, PokemonItemUiState,
+          PokemonItemUiState>
+      get copyWith => _PokemonItemUiStateCopyWithImpl(
+          this as PokemonItemUiState, $identity, $identity);
+  @override
+  String toString() {
+    return PokemonItemUiStateMapper.ensureInitialized()
+        .stringifyValue(this as PokemonItemUiState);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return PokemonItemUiStateMapper.ensureInitialized()
+        .equalsValue(this as PokemonItemUiState, other);
+  }
+
+  @override
+  int get hashCode {
+    return PokemonItemUiStateMapper.ensureInitialized()
+        .hashValue(this as PokemonItemUiState);
+  }
+}
+
+extension PokemonItemUiStateValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, PokemonItemUiState, $Out> {
+  PokemonItemUiStateCopyWith<$R, PokemonItemUiState, $Out>
+      get $asPokemonItemUiState =>
+          $base.as((v, t, t2) => _PokemonItemUiStateCopyWithImpl(v, t, t2));
+}
+
+abstract class PokemonItemUiStateCopyWith<$R, $In extends PokemonItemUiState,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
+  $R call({String? id, String? name, String? image, String? order});
+  PokemonItemUiStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _PokemonItemUiStateCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, PokemonItemUiState, $Out>
+    implements PokemonItemUiStateCopyWith<$R, PokemonItemUiState, $Out> {
+  _PokemonItemUiStateCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<PokemonItemUiState> $mapper =
+      PokemonItemUiStateMapper.ensureInitialized();
+  @override
+  $R call({String? id, String? name, String? image, String? order}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (name != null) #name: name,
+        if (image != null) #image: image,
+        if (order != null) #order: order
+      }));
+  @override
+  PokemonItemUiState $make(CopyWithData data) => PokemonItemUiState(
+      id: data.get(#id, or: $value.id),
+      name: data.get(#name, or: $value.name),
+      image: data.get(#image, or: $value.image),
+      order: data.get(#order, or: $value.order));
+
+  @override
+  PokemonItemUiStateCopyWith<$R2, PokemonItemUiState, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _PokemonItemUiStateCopyWithImpl($value, $cast, t);
+}
