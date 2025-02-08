@@ -40,7 +40,6 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
   void _onLoading() {
     // loading case
     notify(state.copyWith(
-      pokemon: null,
       isFetchingPokemon: true,
       errorMsg: '',
     ));
@@ -59,7 +58,6 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
   void _onError(String msg) {
     // unsuccessful case
     notify(state.copyWith(
-      pokemon: null,
       isFetchingPokemon: false,
       errorMsg: msg,
     ));

@@ -97,7 +97,6 @@ class PokemonNotifier extends MMNotifier<PokemonUiState> {
 
   void _onLoading() {
     notify(state.copyWith(
-      pokemon: null,
       isFetchingPokemon: true,
       errorMsg: '',
     ));
@@ -114,7 +113,6 @@ class PokemonNotifier extends MMNotifier<PokemonUiState> {
   void _onError(String msg) {
     // unsuccessful case, keep previous data
     notify(state.copyWith(
-      pokemon: null,
       isFetchingPokemon: false,
       errorMsg: msg,
     ));
