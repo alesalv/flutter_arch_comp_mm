@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../pokemon/notifiers/pokemon_notifier.dart';
 import '../../notifiers/settings_notifier.dart';
@@ -8,13 +7,13 @@ import '../../notifiers/settings_notifier.dart';
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
-class SettingsPage extends ConsumerWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   static const routeName = 'settings';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final controller = settingsNotifierManager.notifier;
 
     return Scaffold(
@@ -50,14 +49,16 @@ class SettingsPage extends ConsumerWidget {
               ],
             ),
             ElevatedButton(
-                onPressed: () => _resetLocal(ref), child: const Text('RESET')),
+              onPressed: () => _resetLocal(),
+              child: const Text('RESET'),
+            ),
           ],
         ),
       ),
     );
   }
 
-  void _resetLocal(WidgetRef ref) {
+  void _resetLocal() {
     pokemonNotifierManager.notifier.resetLocal();
   }
 }

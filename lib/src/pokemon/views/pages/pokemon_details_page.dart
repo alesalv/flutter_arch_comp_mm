@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/views/widgets/circular_image.dart';
 import '../../notifiers/pokemon_details_notifier.dart';
@@ -45,11 +44,11 @@ class PokemonDetailsViewArgs {
   const PokemonDetailsViewArgs(this.id);
 }
 
-class _LoadingIndicator extends ConsumerWidget {
+class _LoadingIndicator extends StatelessWidget {
   const _LoadingIndicator(this.id);
   final String id;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final isFetchingNotifier = pokemonDetailsNotifierManager.notifier.select(
       (final s) => s.isFetchingPokemon,
     );
@@ -63,11 +62,11 @@ class _LoadingIndicator extends ConsumerWidget {
   }
 }
 
-class _PokemonDetailsPanel extends ConsumerWidget {
+class _PokemonDetailsPanel extends StatelessWidget {
   const _PokemonDetailsPanel(this.id);
   final String id;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final itemsNotifier = pokemonDetailsNotifierManager.notifier.select(
       (s) => s.pokemon,
     );

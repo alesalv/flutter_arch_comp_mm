@@ -19,8 +19,6 @@ dependencies:
   cached_network_image: ^3.4.1
   # https://pub.dev/packages/dart_mappable
   dart_mappable: ^4.3.0
-  # https://pub.dev/packages/flutter_riverpod
-  flutter_riverpod: ^2.6.1
   # https://pub.dev/packages/flutter_svg
   flutter_svg: ^2.0.17
   # https://pub.dev/packages/http

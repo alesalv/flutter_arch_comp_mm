@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../notifiers/pokemon_notifier.dart';
 import '../../models/data/pokemon.dart';
 
-class ActionsFabsRow extends ConsumerWidget {
+class ActionsFabsRow extends StatelessWidget {
   const ActionsFabsRow({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [

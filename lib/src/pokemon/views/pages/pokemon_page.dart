@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/widgets/actions_fabs_row.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/widgets/actions_menu_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../notifiers/pokemon_notifier.dart';
@@ -10,16 +9,16 @@ import '../widgets/pokemon_card.dart';
 
 /// PokemonPage represents a page to displays a list of pokemon, showing a
 /// loading indicator for fetching operations and an error indicator for errors
-class PokemonPage extends ConsumerStatefulWidget {
+class PokemonPage extends StatefulWidget {
   const PokemonPage({super.key});
 
   static const routeName = 'pokemon_page';
 
   @override
-  ConsumerState<PokemonPage> createState() => _PokemonPageState();
+  State<PokemonPage> createState() => _PokemonPageState();
 }
 
-class _PokemonPageState extends ConsumerState<PokemonPage> {
+class _PokemonPageState extends State<PokemonPage> {
   @override
   void initState() {
     super.initState();
@@ -47,9 +46,9 @@ class _PokemonPageState extends ConsumerState<PokemonPage> {
   }
 }
 
-class _LoadingIndicator extends ConsumerWidget {
+class _LoadingIndicator extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final isFetchingNotifier = pokemonNotifierManager.notifier.select(
       (s) => s.isFetchingPokemon,
     );
@@ -63,9 +62,9 @@ class _LoadingIndicator extends ConsumerWidget {
   }
 }
 
-class _PokemonList extends ConsumerWidget {
+class _PokemonList extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final itemsNotifier = pokemonNotifierManager.notifier.select(
       (s) => s.pokemon,
     );
@@ -110,9 +109,9 @@ class _PokemonList extends ConsumerWidget {
   }
 }
 
-class _ErrorIndicator extends ConsumerWidget {
+class _ErrorIndicator extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final msgNotifier = pokemonNotifierManager.notifier.select(
       (s) => s.errorMsg,
     );
