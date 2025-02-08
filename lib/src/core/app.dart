@@ -73,7 +73,9 @@ class MyApp extends StatelessWidget {
                   case PokemonPage.routeName:
                     return const PokemonPage();
                   case PokemonDetailsPage.routeName:
-                    return const PokemonDetailsPage();
+                    return PokemonDetailsPage(
+                        id: (routeSettings.arguments as PokemonDetailsViewArgs)
+                            .id);
                   default:
                     return const SplashPage();
                 }
