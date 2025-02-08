@@ -14,6 +14,8 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
       : super(const PokemonDetailsUiState());
 
   final Repository<Pokemon> pokemonRepository;
+  // in-memory cache for pokemon
+  static final _pokemonCache = <int, Pokemon>{};
 
   @override
   void dispose() {
@@ -27,9 +29,14 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
   }
 
   Future<void> fetchPokemon(String id) async {
+    final cached = _pokemonCache[int.parse(id)];
+    if (cached != null) {
+      _onData(cached);
+      return;
+    }
+
     _onLoading();
     try {
-      // TODO: add some in-memory cache
       final pokemon = await pokemonRepository.read(int.parse(id));
       _onData(pokemon);
     } on Exception catch (e) {
@@ -46,6 +53,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
   }
 
   void _onData(Pokemon? data) {
+    unawaited(_cachePokemon(data));
     notify(state.copyWith(
       pokemon: data == null
           ? const PokemonDetailsItemUiState()
@@ -61,6 +69,12 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
       isFetchingPokemon: false,
       errorMsg: msg,
     ));
+  }
+
+  Future<void> _cachePokemon(Pokemon? data) async {
+    if (data != null) {
+      _pokemonCache[data.id] = data;
+    }
   }
 }
 
