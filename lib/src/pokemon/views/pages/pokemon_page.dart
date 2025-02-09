@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/widgets/actions_fabs_row.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/widgets/actions_menu_button.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../controllers/pokemon_controller.dart';
+import '../../notifiers/pokemon_notifier.dart';
 import '../widgets/loading_indicator.dart';
 import '../widgets/pokemon_card.dart';
 
 /// PokemonPage represents a page to displays a list of pokemon, showing a
 /// loading indicator for fetching operations and an error indicator for errors
-class PokemonPage extends ConsumerStatefulWidget {
+class PokemonPage extends StatefulWidget {
   const PokemonPage({super.key});
 
   static const routeName = 'pokemon_page';
 
   @override
-  ConsumerState<PokemonPage> createState() => _PokemonPageState();
+  State<PokemonPage> createState() => _PokemonPageState();
 }
 
-class _PokemonPageState extends ConsumerState<PokemonPage> {
+class _PokemonPageState extends State<PokemonPage> {
   @override
   void initState() {
     super.initState();
@@ -43,79 +42,94 @@ class _PokemonPageState extends ConsumerState<PokemonPage> {
   }
 
   _upload() {
-    ref.read(pokemonControllerProvider).uploadPokemon();
+    pokemonNotifierManager.notifier.uploadPokemon();
   }
 }
 
-class _LoadingIndicator extends ConsumerWidget {
+class _LoadingIndicator extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isFetchingPokemon = ref.watch(
-        pokemonControllerProvider.select((c) => c.state.isFetchingPokemon));
+  Widget build(BuildContext context) {
+    final isFetchingNotifier = pokemonNotifierManager.notifier.select(
+      (s) => s.isFetchingPokemon,
+    );
 
-    return isFetchingPokemon
-        ? const LoadingIndicator()
-        : const SizedBox.shrink();
+    return ValueListenableBuilder(
+      valueListenable: isFetchingNotifier,
+      builder: (context, isFetchingPokemon, child) => isFetchingPokemon
+          ? const LoadingIndicator()
+          : const SizedBox.shrink(),
+    );
   }
 }
 
-class _PokemonList extends ConsumerWidget {
+class _PokemonList extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final items =
-        ref.watch(pokemonControllerProvider.select((c) => c.state.pokemon));
-
-    return items.isEmpty
-        ? Padding(
-            padding: const EdgeInsets.only(top: 200),
-            child: Center(
-              child: Column(
-                children: [
-                  SvgPicture.asset(
-                    'assets/images/void.svg',
-                    width: 150,
-                    height: 150, //asset location
+  Widget build(BuildContext context) {
+    final itemsNotifier = pokemonNotifierManager.notifier.select(
+      (s) => s.pokemon,
+    );
+    return ListenableBuilder(
+      listenable: itemsNotifier,
+      builder: (context, child) {
+        final items = itemsNotifier.value;
+        return items.isEmpty
+            ? Padding(
+                padding: const EdgeInsets.only(top: 200),
+                child: Center(
+                  child: Column(
+                    children: [
+                      SvgPicture.asset(
+                        'assets/images/void.svg',
+                        width: 150,
+                        height: 150, //asset location
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      const Text(
+                        'No pokemon yet',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  const Text(
-                    'No pokemon yet',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ],
-              ),
-            ),
-          )
-        : ListView.builder(
-            // Providing a restorationId allows the ListView to restore the
-            // scroll position when a user leaves and returns to the app after it
-            // has been killed while running in the background.
-            restorationId: 'pokemonListView',
-            itemCount: items.length,
-            itemBuilder: (BuildContext context, int index) {
-              return PokemonCard(items[index]);
-            },
-          );
+                ),
+              )
+            : ListView.builder(
+                // Providing a restorationId allows the ListView to restore the
+                // scroll position when a user leaves and returns to the app after it
+                // has been killed while running in the background.
+                restorationId: 'pokemonListView',
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return PokemonCard(items[index]);
+                },
+              );
+      },
+    );
   }
 }
 
-class _ErrorIndicator extends ConsumerWidget {
+class _ErrorIndicator extends StatelessWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final msg =
-        ref.watch(pokemonControllerProvider.select((c) => c.state.errorMsg));
-
-    if (msg.isNotEmpty) {
-      WidgetsBinding.instance
-          .addPostFrameCallback((final _) => _showSnackbar(context, ref, msg));
-    }
-    return const SizedBox.shrink();
+  Widget build(BuildContext context) {
+    final msgNotifier = pokemonNotifierManager.notifier.select(
+      (s) => s.errorMsg,
+    );
+    return ValueListenableBuilder(
+      valueListenable: msgNotifier,
+      builder: (context, msg, child) {
+        if (msg.isNotEmpty) {
+          WidgetsBinding.instance
+              .addPostFrameCallback((final _) => _showSnackbar(context, msg));
+        }
+        return const SizedBox.shrink();
+      },
+    );
   }
 
-  void _showSnackbar(BuildContext context, WidgetRef ref, String msg) {
+  void _showSnackbar(BuildContext context, String msg) {
     final snackBar = SnackBar(content: Text('Oops something went wrong: $msg'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    ref.read(pokemonControllerProvider).consumeError();
+    pokemonNotifierManager.notifier.consumeError();
   }
 }

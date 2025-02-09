@@ -12,16 +12,16 @@ PokemonApiModel _$PokemonApiModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => AbilityInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      baseExperience: json['base_experience'] as int? ?? 0,
-      height: json['height'] as int? ?? 0,
-      id: json['id'] as int? ?? 0,
+      baseExperience: (json['base_experience'] as num?)?.toInt() ?? 0,
+      height: (json['height'] as num?)?.toInt() ?? 0,
+      id: (json['id'] as num?)?.toInt() ?? 0,
       isDefault: json['is_default'] as bool? ?? false,
       moves: (json['moves'] as List<dynamic>?)
               ?.map((e) => MoveInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       name: json['name'] as String? ?? '',
-      order: json['order'] as int? ?? 0,
+      order: (json['order'] as num?)?.toInt() ?? 0,
       image: json['sprites'] == null
           ? ''
           : _extractImage(json['sprites'] as Object),
@@ -29,7 +29,7 @@ PokemonApiModel _$PokemonApiModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => TypeInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      weight: json['weight'] as int? ?? 0,
+      weight: (json['weight'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$PokemonApiModelToJson(PokemonApiModel instance) =>

@@ -1,4 +1,4 @@
-Demo sample for Flutter Architecture Components
+Demo sample for Flutter Architecture Components ported to use [Minimal MVN](https://github.com/alesalv/minimal) instead of Riverpod
 
 Presented initially at Flutter Vikings 2022
 

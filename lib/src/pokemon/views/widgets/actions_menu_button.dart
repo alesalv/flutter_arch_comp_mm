@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch_comp/src/core/utils/demo_hacks_helper.dart';
 import 'package:flutter_arch_comp/src/pokemon/models/repositories/pokemon_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ActionsMenuButton extends ConsumerWidget {
+class ActionsMenuButton extends StatelessWidget {
   const ActionsMenuButton({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return PopupMenuButton<_MenuActions>(
         onSelected: (_MenuActions item) async {
           // this mocks an event which could happen via firebase, or from
@@ -19,18 +18,18 @@ class ActionsMenuButton extends ConsumerWidget {
               final next =
                   await DemoHacksHelper.instance.nextPokemonFromRemote();
               if (next != null) {
-                ref.read(pokemonRepositoryProvider).create(next);
+                pokemonRepositoryLocator.instance.create(next);
               }
               break;
             case _MenuActions.delete:
               final first =
                   await DemoHacksHelper.instance.firstPokemonFromLocal();
               if (first != null) {
-                ref.read(pokemonRepositoryProvider).delete(first.id);
+                pokemonRepositoryLocator.instance.delete(first.id);
               }
               break;
             case _MenuActions.refresh:
-              ref.read(pokemonRepositoryProvider).refresh();
+              pokemonRepositoryLocator.instance.refresh();
               break;
           }
         },

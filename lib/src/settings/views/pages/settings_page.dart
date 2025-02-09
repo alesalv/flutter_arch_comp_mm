@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../pokemon/controllers/pokemon_controller.dart';
-import '../../controllers/settings_controller.dart';
+import '../../../pokemon/notifiers/pokemon_notifier.dart';
+import '../../notifiers/settings_notifier.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 /// When a user changes a setting, the SettingsController is updated and
 /// Widgets that listen to the SettingsController are rebuilt.
-class SettingsPage extends ConsumerWidget {
+class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   static const routeName = 'settings';
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(settingsControllerProvider);
+  Widget build(BuildContext context) {
+    final controller = settingsNotifierManager.notifier;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +30,7 @@ class SettingsPage extends ConsumerWidget {
           children: [
             DropdownButton<ThemeMode>(
               // Read the selected themeMode from the controller
-              value: controller.themeMode,
+              value: controller.state.themeMode,
               // Call the updateThemeMode method any time the user selects a theme.
               onChanged: controller.updateThemeMode,
               items: const [
@@ -50,14 +49,16 @@ class SettingsPage extends ConsumerWidget {
               ],
             ),
             ElevatedButton(
-                onPressed: () => _resetLocal(ref), child: const Text('RESET')),
+              onPressed: () => _resetLocal(),
+              child: const Text('RESET'),
+            ),
           ],
         ),
       ),
     );
   }
 
-  void _resetLocal(WidgetRef ref) {
-    ref.read(pokemonControllerProvider.notifier).resetLocal();
+  void _resetLocal() {
+    pokemonNotifierManager.notifier.resetLocal();
   }
 }
