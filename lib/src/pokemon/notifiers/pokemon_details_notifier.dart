@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_arch_comp/src/pokemon/models/data/pokemon.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../../core/models/repositories/repository.dart';
 import '../models/repositories/pokemon_repository.dart';

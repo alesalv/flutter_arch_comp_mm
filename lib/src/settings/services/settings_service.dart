@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 
 /// A service that stores and retrieves user settings.
 ///

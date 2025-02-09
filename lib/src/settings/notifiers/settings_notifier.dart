@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_arch_comp/src/settings/notifiers/settings_state.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../services/settings_service.dart';
 

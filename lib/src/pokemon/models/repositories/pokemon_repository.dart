@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_arch_comp/src/core/models/repositories/repository.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../../../core/models/data_sources/data_source.dart';
 import '../../../core/utils/demo_hacks_helper.dart';

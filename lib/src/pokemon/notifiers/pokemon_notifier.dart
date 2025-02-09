@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_arch_comp/src/pokemon/models/data/pokemon.dart';
 import 'package:flutter_arch_comp/src/pokemon/models/repositories/pokemon_repository.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/ui_states/pokemon_ui_state.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../../core/models/repositories/repository.dart';
 import '../../core/utils/demo_hacks_helper.dart';

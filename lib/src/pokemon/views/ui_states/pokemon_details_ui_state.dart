@@ -1,5 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:minimal/minimal.dart';
+import 'package:minimal_mvn/minimal_mvn.dart';
 import 'package:flutter_arch_comp/src/core/utils/extensions.dart';
 import 'package:flutter_arch_comp/src/pokemon/models/data/pokemon.dart';
 
