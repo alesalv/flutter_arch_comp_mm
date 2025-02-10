@@ -25,6 +25,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
   }
 
   void consumeError() {
+    if (disposed) return;
     notify(state.copyWith(errorMsg: ''));
   }
 
@@ -46,6 +47,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
 
   void _onLoading() {
     // loading case
+    if (disposed) return;
     notify(state.copyWith(
       isFetchingPokemon: true,
       errorMsg: '',
@@ -54,6 +56,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
 
   void _onData(Pokemon? data) {
     unawaited(_cachePokemon(data));
+    if (disposed) return;
     notify(state.copyWith(
       pokemon: data == null
           ? const PokemonDetailsItemUiState()
@@ -65,6 +68,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
 
   void _onError(String msg) {
     // unsuccessful case
+    if (disposed) return;
     notify(state.copyWith(
       isFetchingPokemon: false,
       errorMsg: msg,

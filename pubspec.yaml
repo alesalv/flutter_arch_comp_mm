@@ -2,12 +2,12 @@ name: flutter_arch_comp
 description: Demo sample for Flutter Architecture Components
 
 # Prevent accidental publishing to pub.dev.
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -26,7 +26,7 @@ dependencies:
   # https://pub.dev/packages/json_annotation
   json_annotation: ^4.9.0
   # https://pub.dev/packages/minimal_mvn
-  minimal_mvn: ^1.0.1
+  minimal_mvn: ^1.0.2
   # https://pub.dev/packages/shared_preferences
   shared_preferences: ^2.3.5
 
