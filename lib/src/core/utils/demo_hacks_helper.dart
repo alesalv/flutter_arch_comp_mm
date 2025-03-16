@@ -40,8 +40,7 @@ class DemoHacksHelper {
     }
   }
 
-  void setDataSources(
-      DataSource<PokemonApiModel> local, DataSource<PokemonApiModel> remote) {
+  void setDataSources(DataSource<PokemonApiModel> local, DataSource<PokemonApiModel> remote) {
     _local = local;
     _remote = remote;
   }

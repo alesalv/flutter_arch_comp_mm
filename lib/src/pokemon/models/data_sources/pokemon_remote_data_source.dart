@@ -18,12 +18,9 @@ class PokemonRemoteDataSource implements DataSource<PokemonApiModel> {
   Future<void> create(PokemonApiModel pokemon) async {
     try {
       // mocks the pokemon as created if I can poke the server
-      await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/'))
-          .timeout(const Duration(seconds: 4));
+      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/')).timeout(const Duration(seconds: 4));
     } on Exception catch (e) {
-      throw Exception(
-          'Unable to create pokemon with id ${pokemon.id} from API, ${e.toString()}');
+      throw Exception('Unable to create pokemon with id ${pokemon.id} from API, ${e.toString()}');
     }
   }
 
@@ -31,9 +28,7 @@ class PokemonRemoteDataSource implements DataSource<PokemonApiModel> {
   Future<void> createAll(List<PokemonApiModel> data) async {
     try {
       // mocks the pokemon as created if I can poke the server
-      await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/'))
-          .timeout(const Duration(seconds: 4));
+      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/')).timeout(const Duration(seconds: 4));
     } on Exception catch (e) {
       throw Exception('Unable to create all pokemon from API, ${e.toString()}');
     }
@@ -43,29 +38,24 @@ class PokemonRemoteDataSource implements DataSource<PokemonApiModel> {
   Future<void> delete(int id) async {
     try {
       // mocks the pokemon as deleted if I can poke the server
-      await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/'))
-          .timeout(const Duration(seconds: 4));
+      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/')).timeout(const Duration(seconds: 4));
     } on Exception catch (e) {
-      throw Exception(
-          'Unable to delete pokemon with id $id from API, ${e.toString()}');
+      throw Exception('Unable to delete pokemon with id $id from API, ${e.toString()}');
     }
   }
 
   @override
   Future<PokemonApiModel?> read(int id) async {
     try {
-      final res = await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$id/'))
-          .timeout(const Duration(seconds: 4));
+      final res =
+          await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/$id/')).timeout(const Duration(seconds: 4));
       if (res.statusCode == 200) {
         return parsePokemon(res.body);
       } else {
         throw Exception();
       }
     } on Exception catch (e) {
-      throw Exception(
-          'Unable to read pokemon with id $id from API, ${e.toString()}');
+      throw Exception('Unable to read pokemon with id $id from API, ${e.toString()}');
     }
   }
 
@@ -73,9 +63,7 @@ class PokemonRemoteDataSource implements DataSource<PokemonApiModel> {
   Future<List<PokemonApiModel>> readAll() async {
     /// create pokemon urls
     final urls = <String>[];
-    for (int i = DemoHacksHelper.instance.lowestId;
-        i <= DemoHacksHelper.instance.highestId + 1;
-        i++) {
+    for (int i = DemoHacksHelper.instance.lowestId; i <= DemoHacksHelper.instance.highestId + 1; i++) {
       urls.add('https://pokeapi.co/api/v2/pokemon/$i/');
     }
 
@@ -99,12 +87,9 @@ class PokemonRemoteDataSource implements DataSource<PokemonApiModel> {
   Future<void> update(PokemonApiModel pokemon) async {
     try {
       // mocks the pokemon as updated if I can poke the server
-      await http
-          .get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/'))
-          .timeout(const Duration(seconds: 4));
+      await http.get(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/')).timeout(const Duration(seconds: 4));
     } on Exception catch (e) {
-      throw Exception(
-          'Unable to update pokemon with id ${pokemon.id} from API, ${e.toString()}');
+      throw Exception('Unable to update pokemon with id ${pokemon.id} from API, ${e.toString()}');
     }
   }
 }

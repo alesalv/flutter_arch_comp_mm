@@ -10,8 +10,7 @@ import '../services/settings_service.dart';
 /// Notifiers glue Data Services to Flutter Widgets. The SettingsNotifier
 /// uses the SettingsService to store and retrieve user settings.
 class SettingsNotifier extends MMNotifier<SettingsState> {
-  SettingsNotifier(this._settingsService)
-      : super(const SettingsState(themeMode: ThemeMode.system));
+  SettingsNotifier(this._settingsService) : super(const SettingsState(themeMode: ThemeMode.system));
 
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;

@@ -55,9 +55,8 @@ class _LoadingIndicator extends StatelessWidget {
 
     return ValueListenableBuilder(
       valueListenable: isFetchingNotifier,
-      builder: (context, isFetchingPokemon, child) => isFetchingPokemon
-          ? const LoadingIndicator()
-          : const SizedBox.shrink(),
+      builder: (context, isFetchingPokemon, child) =>
+          isFetchingPokemon ? const LoadingIndicator() : const SizedBox.shrink(),
     );
   }
 }
@@ -119,8 +118,7 @@ class _ErrorIndicator extends StatelessWidget {
       valueListenable: msgNotifier,
       builder: (context, msg, child) {
         if (msg.isNotEmpty) {
-          WidgetsBinding.instance
-              .addPostFrameCallback((final _) => _showSnackbar(context, msg));
+          WidgetsBinding.instance.addPostFrameCallback((final _) => _showSnackbar(context, msg));
         }
         return const SizedBox.shrink();
       },

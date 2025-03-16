@@ -47,8 +47,7 @@ class PokemonApiModel {
   final List<TypeInfo> types;
   final int weight;
 
-  factory PokemonApiModel.fromJson(Map<String, dynamic> json) =>
-      _$PokemonApiModelFromJson(json);
+  factory PokemonApiModel.fromJson(Map<String, dynamic> json) => _$PokemonApiModelFromJson(json);
   Map<String, dynamic> toJson() => _$PokemonApiModelToJson(this);
 
   @override
@@ -83,8 +82,7 @@ class PokemonApiModel {
       weight.hashCode;
 
   get isEmpty => id == 0;
-  List<String> get abilitiesList =>
-      abilities.map((i) => i.ability.name).toList();
+  List<String> get abilitiesList => abilities.map((i) => i.ability.name).toList();
   List<String> get movesList => moves.map((i) => i.move.name).toList();
   List<String> get typesList => types.map((i) => i.type.name).toList();
 }
@@ -94,16 +92,12 @@ class PokemonApiModel {
 class AbilityInfo {
   const AbilityInfo(this.ability);
   final Ability ability;
-  factory AbilityInfo.fromJson(Map<String, dynamic> json) =>
-      _$AbilityInfoFromJson(json);
+  factory AbilityInfo.fromJson(Map<String, dynamic> json) => _$AbilityInfoFromJson(json);
   Map<String, dynamic> toJson() => _$AbilityInfoToJson(this);
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is AbilityInfo &&
-          runtimeType == other.runtimeType &&
-          ability == other.ability;
+      identical(this, other) || other is AbilityInfo && runtimeType == other.runtimeType && ability == other.ability;
 
   @override
   int get hashCode => ability.hashCode;
@@ -114,16 +108,12 @@ class AbilityInfo {
 class Ability {
   const Ability(this.name);
   final String name;
-  factory Ability.fromJson(Map<String, dynamic> json) =>
-      _$AbilityFromJson(json);
+  factory Ability.fromJson(Map<String, dynamic> json) => _$AbilityFromJson(json);
   Map<String, dynamic> toJson() => _$AbilityToJson(this);
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Ability &&
-          runtimeType == other.runtimeType &&
-          name == other.name;
+      identical(this, other) || other is Ability && runtimeType == other.runtimeType && name == other.name;
 
   @override
   int get hashCode => name.hashCode;
@@ -134,16 +124,12 @@ class Ability {
 class MoveInfo {
   const MoveInfo(this.move);
   final Move move;
-  factory MoveInfo.fromJson(Map<String, dynamic> json) =>
-      _$MoveInfoFromJson(json);
+  factory MoveInfo.fromJson(Map<String, dynamic> json) => _$MoveInfoFromJson(json);
   Map<String, dynamic> toJson() => _$MoveInfoToJson(this);
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is MoveInfo &&
-          runtimeType == other.runtimeType &&
-          move == other.move;
+      identical(this, other) || other is MoveInfo && runtimeType == other.runtimeType && move == other.move;
 
   @override
   int get hashCode => move.hashCode;
@@ -159,8 +145,7 @@ class Move {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Move && runtimeType == other.runtimeType && name == other.name;
+      identical(this, other) || other is Move && runtimeType == other.runtimeType && name == other.name;
 
   @override
   int get hashCode => name.hashCode;
@@ -171,16 +156,12 @@ class Move {
 class TypeInfo {
   const TypeInfo(this.type);
   final Type type;
-  factory TypeInfo.fromJson(Map<String, dynamic> json) =>
-      _$TypeInfoFromJson(json);
+  factory TypeInfo.fromJson(Map<String, dynamic> json) => _$TypeInfoFromJson(json);
   Map<String, dynamic> toJson() => _$TypeInfoToJson(this);
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is TypeInfo &&
-          runtimeType == other.runtimeType &&
-          type == other.type;
+      identical(this, other) || other is TypeInfo && runtimeType == other.runtimeType && type == other.type;
 
   @override
   int get hashCode => type.hashCode;
@@ -196,8 +177,7 @@ class Type {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Type && runtimeType == other.runtimeType && name == other.name;
+      identical(this, other) || other is Type && runtimeType == other.runtimeType && name == other.name;
 
   @override
   int get hashCode => name.hashCode;

@@ -16,8 +16,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance
-        .addPostFrameCallback((final _) => _afterSplash(context));
+    WidgetsBinding.instance.addPostFrameCallback((final _) => _afterSplash(context));
   }
 
   @override

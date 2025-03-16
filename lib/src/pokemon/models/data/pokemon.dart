@@ -86,8 +86,7 @@ class Pokemon {
       weight.hashCode;
 
   get isEmpty => id == 0;
-  List<String> get abilitiesList =>
-      abilities.map((i) => i.ability.name).toList();
+  List<String> get abilitiesList => abilities.map((i) => i.ability.name).toList();
   List<String> get movesList => moves.map((i) => i.move.name).toList();
   List<String> get typesList => types.map((i) => i.type.name).toList();
 }

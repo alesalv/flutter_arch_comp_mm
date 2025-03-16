@@ -45,8 +45,7 @@ class PokemonDetailsItemUiState with PokemonDetailsItemUiStateMappable {
   final String types;
   final String weight;
 
-  factory PokemonDetailsItemUiState.fromPokemon(Pokemon pokemon) =>
-      PokemonDetailsItemUiState(
+  factory PokemonDetailsItemUiState.fromPokemon(Pokemon pokemon) => PokemonDetailsItemUiState(
         abilities: pokemon.abilitiesList.toPlainString(),
         baseExperience: pokemon.baseExperience.toString(),
         height: pokemon.height.toString(),

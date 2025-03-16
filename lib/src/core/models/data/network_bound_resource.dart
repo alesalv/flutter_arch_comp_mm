@@ -42,8 +42,7 @@ abstract class NetworkBoundResource<T> {
       setValue(Resource.success(persisted.data as T));
     } else {
       /// error
-      setValue(Resource.error(remoteResource.msg,
-          data: remoteResource.data ?? localResource.data));
+      setValue(Resource.error(remoteResource.msg, data: remoteResource.data ?? localResource.data));
     }
   }
 }

@@ -14,14 +14,12 @@ class ActionsFabsRow extends StatelessWidget {
         FloatingActionButton(
             heroTag: "buttonCreate",
             child: const Icon(Icons.add),
-            onPressed: () =>
-                pokemonNotifierManager.notifier.create(const Pokemon())),
+            onPressed: () => pokemonNotifierManager.notifier.create(const Pokemon())),
         const SizedBox(width: 16),
         FloatingActionButton(
             heroTag: "buttonDelete",
             child: const Icon(Icons.remove),
-            onPressed: () =>
-                pokemonNotifierManager.notifier.delete(const Pokemon().id)),
+            onPressed: () => pokemonNotifierManager.notifier.delete(const Pokemon().id)),
         const SizedBox(width: 16),
         FloatingActionButton(
             heroTag: "buttonRefresh",
