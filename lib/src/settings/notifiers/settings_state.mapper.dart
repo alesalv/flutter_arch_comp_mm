@@ -57,7 +57,7 @@ mixin SettingsStateMappable {
   }
 
   SettingsStateCopyWith<SettingsState, SettingsState, SettingsState>
-      get copyWith => _SettingsStateCopyWithImpl(
+      get copyWith => _SettingsStateCopyWithImpl<SettingsState, SettingsState>(
           this as SettingsState, $identity, $identity);
   @override
   String toString() {
@@ -81,7 +81,7 @@ mixin SettingsStateMappable {
 extension SettingsStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, SettingsState, $Out> {
   SettingsStateCopyWith<$R, SettingsState, $Out> get $asSettingsState =>
-      $base.as((v, t, t2) => _SettingsStateCopyWithImpl(v, t, t2));
+      $base.as((v, t, t2) => _SettingsStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class SettingsStateCopyWith<$R, $In extends SettingsState, $Out>
@@ -108,5 +108,5 @@ class _SettingsStateCopyWithImpl<$R, $Out>
   @override
   SettingsStateCopyWith<$R2, SettingsState, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _SettingsStateCopyWithImpl($value, $cast, t);
+      _SettingsStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
