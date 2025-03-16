@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_arch_comp/src/settings/notifiers/settings_state.dart';
 import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../services/settings_service.dart';
@@ -9,8 +8,8 @@ import '../services/settings_service.dart';
 ///
 /// Notifiers glue Data Services to Flutter Widgets. The SettingsNotifier
 /// uses the SettingsService to store and retrieve user settings.
-class SettingsNotifier extends MMNotifier<SettingsState> {
-  SettingsNotifier(this._settingsService) : super(const SettingsState(themeMode: ThemeMode.system));
+class SettingsNotifier extends MMNotifier<ThemeMode> {
+  SettingsNotifier(this._settingsService) : super(ThemeMode.system);
 
   // Make SettingsService a private variable so it is not used directly.
   final SettingsService _settingsService;
@@ -20,7 +19,7 @@ class SettingsNotifier extends MMNotifier<SettingsState> {
   /// settings from the service.
   Future<void> loadSettings() async {
     final theme = await _settingsService.themeMode();
-    notify(state.copyWith(themeMode: theme));
+    notify(theme);
   }
 
   /// Update and persist the ThemeMode based on the user's selection.
@@ -28,10 +27,10 @@ class SettingsNotifier extends MMNotifier<SettingsState> {
     if (newThemeMode == null) return;
 
     // Dot not perform any work if new and old ThemeMode are identical
-    if (newThemeMode == state.themeMode) return;
+    if (newThemeMode == state) return;
 
     // Otherwise, store the new theme mode in memory
-    notify(state.copyWith(themeMode: newThemeMode));
+    notify(newThemeMode);
 
     // Persist the changes to a local database or the internet using the
     // SettingService.

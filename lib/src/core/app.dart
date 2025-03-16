@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           // SettingsController to display the correct theme.
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
-          themeMode: settingsNotifier.state.themeMode,
+          themeMode: settingsNotifier.state,
 
           // Define a function to handle named routes in order to support
           // Flutter web url navigation and deep linking.
