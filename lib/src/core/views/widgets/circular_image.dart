@@ -7,8 +7,7 @@ class CircularImage extends StatelessWidget {
   final String imageUrl;
   final double size;
 
-  static const _flutterLogo = CircleAvatar(
-      foregroundImage: AssetImage('assets/images/flutter_logo.png'));
+  static const _flutterLogo = CircleAvatar(foregroundImage: AssetImage('assets/images/flutter_logo.png'));
 
   @override
   Widget build(BuildContext context) {

@@ -31,8 +31,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                onPressed: () => Navigator.restorablePushNamed(
-                    context, PokemonPage.routeName),
+                onPressed: () => Navigator.restorablePushNamed(context, PokemonPage.routeName),
                 child: const Text('Catch \'em all')),
           ],
         ),

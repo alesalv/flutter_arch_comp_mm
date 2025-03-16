@@ -73,9 +73,9 @@ mixin PokemonDetailsUiStateMappable {
   }
 
   PokemonDetailsUiStateCopyWith<PokemonDetailsUiState, PokemonDetailsUiState,
-          PokemonDetailsUiState>
-      get copyWith => _PokemonDetailsUiStateCopyWithImpl(
-          this as PokemonDetailsUiState, $identity, $identity);
+      PokemonDetailsUiState> get copyWith => _PokemonDetailsUiStateCopyWithImpl<
+          PokemonDetailsUiState, PokemonDetailsUiState>(
+      this as PokemonDetailsUiState, $identity, $identity);
   @override
   String toString() {
     return PokemonDetailsUiStateMapper.ensureInitialized()
@@ -98,8 +98,8 @@ mixin PokemonDetailsUiStateMappable {
 extension PokemonDetailsUiStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, PokemonDetailsUiState, $Out> {
   PokemonDetailsUiStateCopyWith<$R, PokemonDetailsUiState, $Out>
-      get $asPokemonDetailsUiState =>
-          $base.as((v, t, t2) => _PokemonDetailsUiStateCopyWithImpl(v, t, t2));
+      get $asPokemonDetailsUiState => $base.as(
+          (v, t, t2) => _PokemonDetailsUiStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class PokemonDetailsUiStateCopyWith<
@@ -148,7 +148,7 @@ class _PokemonDetailsUiStateCopyWithImpl<$R, $Out>
   @override
   PokemonDetailsUiStateCopyWith<$R2, PokemonDetailsUiState, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _PokemonDetailsUiStateCopyWithImpl($value, $cast, t);
+          _PokemonDetailsUiStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class PokemonDetailsItemUiStateMapper
@@ -249,7 +249,8 @@ mixin PokemonDetailsItemUiStateMappable {
 
   PokemonDetailsItemUiStateCopyWith<PokemonDetailsItemUiState,
           PokemonDetailsItemUiState, PokemonDetailsItemUiState>
-      get copyWith => _PokemonDetailsItemUiStateCopyWithImpl(
+      get copyWith => _PokemonDetailsItemUiStateCopyWithImpl<
+              PokemonDetailsItemUiState, PokemonDetailsItemUiState>(
           this as PokemonDetailsItemUiState, $identity, $identity);
   @override
   String toString() {
@@ -273,8 +274,8 @@ mixin PokemonDetailsItemUiStateMappable {
 extension PokemonDetailsItemUiStateValueCopy<$R, $Out>
     on ObjectCopyWith<$R, PokemonDetailsItemUiState, $Out> {
   PokemonDetailsItemUiStateCopyWith<$R, PokemonDetailsItemUiState, $Out>
-      get $asPokemonDetailsItemUiState => $base
-          .as((v, t, t2) => _PokemonDetailsItemUiStateCopyWithImpl(v, t, t2));
+      get $asPokemonDetailsItemUiState => $base.as((v, t, t2) =>
+          _PokemonDetailsItemUiStateCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class PokemonDetailsItemUiStateCopyWith<
@@ -342,5 +343,5 @@ class _PokemonDetailsItemUiStateCopyWithImpl<$R, $Out>
   @override
   PokemonDetailsItemUiStateCopyWith<$R2, PokemonDetailsItemUiState, $Out2>
       $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _PokemonDetailsItemUiStateCopyWithImpl($value, $cast, t);
+          _PokemonDetailsItemUiStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }

@@ -49,15 +49,14 @@ class MyApp extends StatelessWidget {
           //
           // The appTitle is defined in .arb files found in the localization
           // directory.
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
+          onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
 
           // Define a light and dark color theme. Then, read the user's
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
-          themeMode: settingsNotifier.state.themeMode,
+          themeMode: settingsNotifier.state,
 
           // Define a function to handle named routes in order to support
           // Flutter web url navigation and deep linking.
@@ -73,9 +72,7 @@ class MyApp extends StatelessWidget {
                   case PokemonPage.routeName:
                     return const PokemonPage();
                   case PokemonDetailsPage.routeName:
-                    return PokemonDetailsPage(
-                        id: (routeSettings.arguments as PokemonDetailsViewArgs)
-                            .id);
+                    return PokemonDetailsPage(id: (routeSettings.arguments as PokemonDetailsViewArgs).id);
                   default:
                     return const SplashPage();
                 }

@@ -22,14 +22,12 @@ class PokemonRepository implements Repository<Pokemon> {
   final DataSource<PokemonApiModel> _local;
   final DataSource<PokemonApiModel> _remote;
   final Connectivity _connectivity;
-  final _streamController =
-      StreamController<List<Pokemon>>.broadcast(sync: true);
+  final _streamController = StreamController<List<Pokemon>>.broadcast(sync: true);
 
   @override
   Stream<Pokemon?> watch(int id) {
     return _streamController.stream.map((pokemon) {
-      final one =
-          pokemon.firstWhere((p) => p.id == id, orElse: () => const Pokemon());
+      final one = pokemon.firstWhere((p) => p.id == id, orElse: () => const Pokemon());
       return one.isEmpty ? null : one;
     });
   }
@@ -53,8 +51,7 @@ class PokemonRepository implements Repository<Pokemon> {
         await _remote.create(model);
         await _local.create(model);
         final models = await _local.readAll();
-        _streamController
-            .add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
+        _streamController.add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
       } on Exception catch (e) {
         throw Exception('Unable to create pokemon with id ${pokemon.id}, $e');
       }
@@ -110,8 +107,7 @@ class PokemonRepository implements Repository<Pokemon> {
         await _remote.update(model);
         await _local.update(model);
         final models = await _local.readAll();
-        _streamController
-            .add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
+        _streamController.add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
       } on Exception catch (e) {
         throw Exception('Unable to update pokemon with id ${pokemon.id}, $e');
       }
@@ -130,8 +126,7 @@ class PokemonRepository implements Repository<Pokemon> {
         await _remote.delete(id);
         await _local.delete(id);
         final models = await _local.readAll();
-        _streamController
-            .add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
+        _streamController.add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
       } on Exception catch (e) {
         throw Exception('Unable to delete pokemon with id $id, $e');
       }
@@ -151,8 +146,7 @@ class PokemonRepository implements Repository<Pokemon> {
         // persist into local db
         await _local.createAll(remotePokemon);
         final models = await _local.readAll();
-        _streamController
-            .add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
+        _streamController.add(models.map((m) => Pokemon.fromPokemonApiModel(m)).toList());
       } on Exception catch (e) {
         throw Exception('Unable to refresh pokemon, $e');
       }
@@ -171,6 +165,5 @@ class PokemonRepository implements Repository<Pokemon> {
 
 /// pokemonRepositoryLocator provides the pokemon repository (singleton)
 final pokemonRepositoryLocator = MMLocator<Repository<Pokemon>>(() {
-  return PokemonRepository(PokemonLocalDataSource(), PokemonRemoteDataSource(),
-      Connectivity.instance);
+  return PokemonRepository(PokemonLocalDataSource(), PokemonRemoteDataSource(), Connectivity.instance);
 });

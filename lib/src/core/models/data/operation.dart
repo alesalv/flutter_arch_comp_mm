@@ -19,14 +19,11 @@ class Operation<T> {
   bool get isError => status == OperationStatus.error;
 
   // TODO(alesalv): no need to pass data during loading
-  static Operation<T> loading<T>({T? data}) =>
-      Operation(OperationStatus.loading, data: data);
+  static Operation<T> loading<T>({T? data}) => Operation(OperationStatus.loading, data: data);
 
-  static Operation<T> success<T>(T data) =>
-      Operation(OperationStatus.success, data: data);
+  static Operation<T> success<T>(T data) => Operation(OperationStatus.success, data: data);
 
-  static Operation<T> error<T>(String msg, {T? data}) =>
-      Operation(OperationStatus.error, data: data, msg: msg);
+  static Operation<T> error<T>(String msg, {T? data}) => Operation(OperationStatus.error, data: data, msg: msg);
 }
 
 // TODO(alesalv): make OperationStatus private

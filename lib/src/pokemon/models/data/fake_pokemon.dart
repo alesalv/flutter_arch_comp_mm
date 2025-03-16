@@ -6,15 +6,13 @@ const kFakePokemon = [
     name: 'bulbasaur',
     height: 7,
     weight: 69,
-    image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+    image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
   ),
   PokemonApiModel(
     id: 2,
     name: 'ivysaur',
     height: 10,
     weight: 130,
-    image:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
+    image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
   ),
 ];

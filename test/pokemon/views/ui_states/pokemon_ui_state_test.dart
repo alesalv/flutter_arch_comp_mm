@@ -34,8 +34,7 @@ void main() {
       final pokemonUiState = PokemonUiState(pokemon: const []);
 
       expect(pokemonUiState.pokemon.length, 0);
-      expect(() => pokemonUiState.pokemon.add(const PokemonItemUiState()),
-          throwsUnsupportedError);
+      expect(() => pokemonUiState.pokemon.add(const PokemonItemUiState()), throwsUnsupportedError);
     });
 
     test('should not allow to modify isFetchingPokemon directly', () {
@@ -53,9 +52,7 @@ void main() {
 
 _getFakePokemonList() {
   return [
-    PokemonItemUiState.fromPokemon(
-        Pokemon.fromPokemonApiModel(kFakePokemon[0])),
-    PokemonItemUiState.fromPokemon(
-        Pokemon.fromPokemonApiModel(kFakePokemon[1])),
+    PokemonItemUiState.fromPokemon(Pokemon.fromPokemonApiModel(kFakePokemon[0])),
+    PokemonItemUiState.fromPokemon(Pokemon.fromPokemonApiModel(kFakePokemon[1])),
   ];
 }

@@ -17,8 +17,7 @@ class PokemonLocalDataSource implements DataSource<PokemonApiModel> {
   @override
   Future<void> create(PokemonApiModel pokemon) async {
     final all = await readAll();
-    final first = all.firstWhere((p) => p.id == pokemon.id,
-        orElse: () => const PokemonApiModel());
+    final first = all.firstWhere((p) => p.id == pokemon.id, orElse: () => const PokemonApiModel());
     if (first.isEmpty) {
       all.add(pokemon);
       await createAll(all);
@@ -46,8 +45,7 @@ class PokemonLocalDataSource implements DataSource<PokemonApiModel> {
   @override
   Future<PokemonApiModel?> read(int id) async {
     final pokemonList = await readAll();
-    final pokemon = pokemonList.firstWhere((p) => p.id == id,
-        orElse: () => const PokemonApiModel());
+    final pokemon = pokemonList.firstWhere((p) => p.id == id, orElse: () => const PokemonApiModel());
     return pokemon.isEmpty ? null : pokemon;
   }
 

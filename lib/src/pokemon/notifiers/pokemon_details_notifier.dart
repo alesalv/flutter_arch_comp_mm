@@ -58,9 +58,7 @@ class PokemonDetailsNotifier extends MMNotifier<PokemonDetailsUiState> {
     unawaited(_cachePokemon(data));
     if (disposed) return;
     notify(state.copyWith(
-      pokemon: data == null
-          ? const PokemonDetailsItemUiState()
-          : PokemonDetailsItemUiState.fromPokemon(data),
+      pokemon: data == null ? const PokemonDetailsItemUiState() : PokemonDetailsItemUiState.fromPokemon(data),
       isFetchingPokemon: false,
       errorMsg: '',
     ));

@@ -15,15 +15,13 @@ class ActionsMenuButton extends StatelessWidget {
           // the controller
           switch (item) {
             case _MenuActions.create:
-              final next =
-                  await DemoHacksHelper.instance.nextPokemonFromRemote();
+              final next = await DemoHacksHelper.instance.nextPokemonFromRemote();
               if (next != null) {
                 pokemonRepositoryLocator.instance.create(next);
               }
               break;
             case _MenuActions.delete:
-              final first =
-                  await DemoHacksHelper.instance.firstPokemonFromLocal();
+              final first = await DemoHacksHelper.instance.firstPokemonFromLocal();
               if (first != null) {
                 pokemonRepositoryLocator.instance.delete(first.id);
               }

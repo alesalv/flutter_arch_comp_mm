@@ -14,13 +14,11 @@ class Resource<T> {
   final T? data;
   final String msg;
 
-  static Resource<T> loading<T>({T? data}) =>
-      Resource(Status.loading, data: data);
+  static Resource<T> loading<T>({T? data}) => Resource(Status.loading, data: data);
 
   static Resource<T> success<T>(T data) => Resource(Status.success, data: data);
 
-  static Resource<T> error<T>(String msg, {T? data}) =>
-      Resource(Status.error, data: data, msg: msg);
+  static Resource<T> error<T>(String msg, {T? data}) => Resource(Status.error, data: data, msg: msg);
 }
 
 // TODO(alesalv): rename this to ResourceStatus
