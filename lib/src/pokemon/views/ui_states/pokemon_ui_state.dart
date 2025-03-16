@@ -1,5 +1,4 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:minimal_mvn/minimal_mvn.dart';
 
 import '../../models/data/pokemon.dart';
 
@@ -7,7 +6,7 @@ part 'pokemon_ui_state.mapper.dart';
 
 /// PokemonUiState represents the UI state for the pokemon page
 @MappableClass()
-class PokemonUiState extends MMState with PokemonUiStateMappable {
+class PokemonUiState with PokemonUiStateMappable {
   PokemonUiState({
     pokemon,
     this.isFetchingPokemon = false,

@@ -457,10 +457,10 @@ packages:
     dependency: "direct main"
     description:
       name: minimal_mvn
-      sha256: d4aad6ba4bc8cf511e9794cb21ca6f5dcf8fb40affc4e0cf326ceaf83c3d458d
+      sha256: f79fc23366ee8b972e0051820d7bbc6d9a7e8bdbcb4810173aea594900b6b839
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "2.0.1"
   octo_image:
     dependency: transitive
     description:
