@@ -1,5 +1,5 @@
 name: flutter_arch_comp
-description: Demo sample for Flutter Architecture Components
+description: Demo sample for Flutter Architecture Components ported to use Minimal MVN
 
 # Prevent accidental publishing to pub.dev.
 publish_to: "none"
