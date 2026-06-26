@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_arch_comp/src/core/views/pages/home_page.dart';
 import 'package:flutter_arch_comp/src/core/views/pages/splash_page.dart';
 import 'package:flutter_arch_comp/src/pokemon/views/pages/pokemon_details_page.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_arch_comp/src/localization/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import '../pokemon/views/pages/pokemon_page.dart';
