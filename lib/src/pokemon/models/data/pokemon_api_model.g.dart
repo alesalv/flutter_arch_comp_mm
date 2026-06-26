@@ -8,7 +8,8 @@ part of 'pokemon_api_model.dart';
 
 PokemonApiModel _$PokemonApiModelFromJson(Map<String, dynamic> json) =>
     PokemonApiModel(
-      abilities: (json['abilities'] as List<dynamic>?)
+      abilities:
+          (json['abilities'] as List<dynamic>?)
               ?.map((e) => AbilityInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -16,7 +17,8 @@ PokemonApiModel _$PokemonApiModelFromJson(Map<String, dynamic> json) =>
       height: (json['height'] as num?)?.toInt() ?? 0,
       id: (json['id'] as num?)?.toInt() ?? 0,
       isDefault: json['is_default'] as bool? ?? false,
-      moves: (json['moves'] as List<dynamic>?)
+      moves:
+          (json['moves'] as List<dynamic>?)
               ?.map((e) => MoveInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -25,7 +27,8 @@ PokemonApiModel _$PokemonApiModelFromJson(Map<String, dynamic> json) =>
       image: json['sprites'] == null
           ? ''
           : _extractImage(json['sprites'] as Object),
-      types: (json['types'] as List<dynamic>?)
+      types:
+          (json['types'] as List<dynamic>?)
               ?.map((e) => TypeInfo.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -47,51 +50,41 @@ Map<String, dynamic> _$PokemonApiModelToJson(PokemonApiModel instance) =>
       'weight': instance.weight,
     };
 
-AbilityInfo _$AbilityInfoFromJson(Map<String, dynamic> json) => AbilityInfo(
-      Ability.fromJson(json['ability'] as Map<String, dynamic>),
-    );
+AbilityInfo _$AbilityInfoFromJson(Map<String, dynamic> json) =>
+    AbilityInfo(Ability.fromJson(json['ability'] as Map<String, dynamic>));
 
 Map<String, dynamic> _$AbilityInfoToJson(AbilityInfo instance) =>
-    <String, dynamic>{
-      'ability': instance.ability.toJson(),
-    };
+    <String, dynamic>{'ability': instance.ability.toJson()};
 
-Ability _$AbilityFromJson(Map<String, dynamic> json) => Ability(
-      json['name'] as String,
-    );
+Ability _$AbilityFromJson(Map<String, dynamic> json) =>
+    Ability(json['name'] as String);
 
 Map<String, dynamic> _$AbilityToJson(Ability instance) => <String, dynamic>{
-      'name': instance.name,
-    };
+  'name': instance.name,
+};
 
-MoveInfo _$MoveInfoFromJson(Map<String, dynamic> json) => MoveInfo(
-      Move.fromJson(json['move'] as Map<String, dynamic>),
-    );
+MoveInfo _$MoveInfoFromJson(Map<String, dynamic> json) =>
+    MoveInfo(Move.fromJson(json['move'] as Map<String, dynamic>));
 
 Map<String, dynamic> _$MoveInfoToJson(MoveInfo instance) => <String, dynamic>{
-      'move': instance.move.toJson(),
-    };
+  'move': instance.move.toJson(),
+};
 
-Move _$MoveFromJson(Map<String, dynamic> json) => Move(
-      json['name'] as String,
-    );
+Move _$MoveFromJson(Map<String, dynamic> json) => Move(json['name'] as String);
 
 Map<String, dynamic> _$MoveToJson(Move instance) => <String, dynamic>{
-      'name': instance.name,
-    };
+  'name': instance.name,
+};
 
-TypeInfo _$TypeInfoFromJson(Map<String, dynamic> json) => TypeInfo(
-      Type.fromJson(json['type'] as Map<String, dynamic>),
-    );
+TypeInfo _$TypeInfoFromJson(Map<String, dynamic> json) =>
+    TypeInfo(Type.fromJson(json['type'] as Map<String, dynamic>));
 
 Map<String, dynamic> _$TypeInfoToJson(TypeInfo instance) => <String, dynamic>{
-      'type': instance.type.toJson(),
-    };
+  'type': instance.type.toJson(),
+};
 
-Type _$TypeFromJson(Map<String, dynamic> json) => Type(
-      json['name'] as String,
-    );
+Type _$TypeFromJson(Map<String, dynamic> json) => Type(json['name'] as String);
 
 Map<String, dynamic> _$TypeToJson(Type instance) => <String, dynamic>{
-      'name': instance.name,
-    };
+  'name': instance.name,
+};
