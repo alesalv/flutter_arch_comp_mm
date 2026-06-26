@@ -61,24 +61,37 @@ This skill automates upgrading Flutter SDK, Minimal, and all other stable depend
 2. Run `fvm flutter pub upgrade --major-versions` to resolve and upgrade dependencies constraints.
 3. Update all other upgraded dependency constraints in `pubspec.yaml` to match their latest resolved stable versions.
 4. Run `fvm flutter pub get` to lock all dependencies in `pubspec.lock`.
-5. Run the model generation script:
+5. Run the localization generator:
+   ```bash
+   fvm flutter gen-l10n
+   ```
+   Note: In Flutter 3.44.4+, synthetic packages are deprecated/removed. Ensure `lib/src/core/app.dart` imports from `package:flutter_arch_comp/src/localization/app_localizations.dart`.
+6. Run the model generation script:
    ```bash
    ./scripts/generate_models.sh
    ```
-6. Run the unit and widget tests to verify correctness:
+7. Run the unit and widget tests to verify correctness:
    ```bash
    fvm flutter test
    ```
-7. Check git status to ensure there are no unintended file changes. Only the modified `pubspec.yaml`, `pubspec.lock`, and generated files (e.g., `.g.dart`, `.mapper.dart`) should be staged.
-8. Stage and commit:
+8. Build the application for macos once to ensure the native configurations (e.g. `macos/`) resolve and migrate correctly:
    ```bash
-   git add pubspec.yaml pubspec.lock lib/src/pokemon/models/data/pokemon_api_model.g.dart lib/src/pokemon/views/ui_states/pokemon_details_ui_state.mapper.dart lib/src/pokemon/views/ui_states/pokemon_ui_state.mapper.dart macos/Flutter/GeneratedPluginRegistrant.swift
-   git commit -m "chore: update Minimal to {MINIMAL_VERSION} and upgrade other dependencies to latest stable"
+   fvm flutter build macos
    ```
+9. Check git status. Staged changes should include:
+   * modified `pubspec.yaml` and `pubspec.lock`
+   * localizations files `lib/src/localization/app_localizations.dart` and `lib/src/localization/app_localizations_en.dart`
+   * modified Xcode/macOS build configuration files in `macos/`
+   * generated model files (`.g.dart`, `.mapper.dart`)
+10. Stage and commit:
+    ```bash
+    git add pubspec.yaml pubspec.lock lib/src/core/app.dart lib/src/localization/app_localizations.dart lib/src/localization/app_localizations_en.dart lib/src/pokemon/models/data/pokemon_api_model.g.dart lib/src/pokemon/views/ui_states/pokemon_details_ui_state.mapper.dart lib/src/pokemon/views/ui_states/pokemon_ui_state.mapper.dart macos/
+    git commit -m "chore: update Minimal to {MINIMAL_VERSION} and upgrade other dependencies to latest stable"
+    ```
 
 ### Step 4 — Request user manual testing
 
-1. Inform the user that the automated upgrades and tests have finished.
+1. Inform the user that the automated upgrades, code generation, localizations, Xcode migration, and tests have finished.
 2. Ask the user to run the application and perform any manual testing.
 3. **STOP** and wait for the user to confirm that manual testing is complete and they are ready to proceed with creating the Pull Request.
 
