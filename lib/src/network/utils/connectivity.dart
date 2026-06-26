@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
 /// Connectivity represents a singleton helper for retrieving connectivity
 /// from the internet
@@ -13,10 +12,12 @@ class Connectivity {
   /// Returns true if connected, false otherwise
   Future<bool> isConnected() async {
     try {
-      final result = await InternetAddress.lookup('google.com');
-      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
-    } on SocketException catch (e) {
-      debugPrint('Unable to read connectivity from internet, $e');
+      final response = await http
+          .head(Uri.parse('https://pokeapi.co/api/v2/pokemon/1/'))
+          .timeout(const Duration(seconds: 3));
+      return response.statusCode == 200;
+    } catch (e) {
+      debugPrint('Connectivity check failed: $e');
       return false;
     }
   }
